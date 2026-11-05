@@ -13,17 +13,55 @@ import {
 } from "lucide-react";
 
 export default function Contact() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
-  function handleSubmit(
+  const handleSubmit = async (
     event: React.FormEvent<HTMLFormElement>
-  ) {
+  ) => {
     event.preventDefault();
 
-    // Frontend demonstration only.
-    // Backend/email integration will be added later.
-    setSubmitted(true);
-  }
+    setIsSubmitting(true);
+    setSubmitted(false);
+    setErrorMessage("");
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch(
+        "https://formspree.io/f/xnppwrlg",
+        {
+          method: "POST",
+          body: formData,
+          headers: {
+            Accept: "application/json",
+          },
+        }
+      );
+
+      if (response.ok) {
+        setSubmitted(true);
+        form.reset();
+      } else {
+        const result = await response.json();
+
+        setErrorMessage(
+          result.errors
+            ?.map((item: { message: string }) => item.message)
+            .join(", ") ||
+            "Something went wrong. Please try again."
+        );
+      }
+    } catch {
+      setErrorMessage(
+        "Network error. Please check your internet connection."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <section id="contact" className="section contact-section">
@@ -49,19 +87,16 @@ export default function Contact() {
           </motion.span>
 
           <motion.h2
-  className="contact-tagline"
-  initial={{ opacity: 0, y: 35 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  viewport={{ once: true, amount: 0.5 }}
-  transition={{
-    duration: 1,
-    ease: "easeOut",
-  }}
->
-  Simplify Work.
-  <br />
-  Amplify Growth.
-</motion.h2>
+            className="contact-tagline"
+            initial={{ opacity: 0, y: 35 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+          >
+            Simplify Work.
+            <br />
+            Amplify Growth.
+          </motion.h2>
 
           <p>
             A practical conversation starts with one business
@@ -156,18 +191,21 @@ export default function Contact() {
                   <CheckCircle size={30} />
                 </motion.div>
 
-                <strong>Form interface tested!</strong>
+                <strong>Enquiry sent successfully!</strong>
 
                 <span>
-                  This is currently a frontend demonstration.
-                  Your enquiry has not been emailed or stored.
-                  Backend integration will be added later.
+                  Thank you for contacting Intevoris AI Solutions.
+                  We've received your enquiry and will get back
+                  to you soon.
                 </span>
 
                 <button
                   type="button"
                   className="text-link"
-                  onClick={() => setSubmitted(false)}
+                  onClick={() => {
+                    setSubmitted(false);
+                    setErrorMessage("");
+                  }}
                 >
                   Submit another enquiry
                   <ArrowRight size={16} />
@@ -182,7 +220,6 @@ export default function Contact() {
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.35 }}
               >
-
                 <div className="form-row">
                   <label>
                     Your name
@@ -250,16 +287,26 @@ export default function Contact() {
                   />
                 </label>
 
+                {errorMessage && (
+                  <p className="form-error" role="alert">
+                    {errorMessage}
+                  </p>
+                )}
+
                 <motion.button
                   type="submit"
                   className="btn btn-primary form-submit"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.97 }}
+                  disabled={isSubmitting}
+                  whileHover={
+                    !isSubmitting ? { scale: 1.02 } : undefined
+                  }
+                  whileTap={
+                    !isSubmitting ? { scale: 0.97 } : undefined
+                  }
                 >
-                  Send Enquiry
+                  {isSubmitting ? "Sending..." : "Send Enquiry"}
                   <Send size={18} />
                 </motion.button>
-
               </motion.form>
             )}
           </AnimatePresence>
