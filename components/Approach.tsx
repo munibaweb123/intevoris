@@ -73,10 +73,22 @@ export default function Approach() {
         >
           <span className="approach-eyebrow">OUR APPROACH</span>
 
-          <h2 className="approach-title">
-            Understand Your Business.
-            <span> Build What Matters.</span>
-          </h2>
+          <motion.h2
+  className="approach-tagline"
+  initial={{ opacity: 0, y: 35 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true, amount: 0.5 }}
+  transition={{
+    duration: 1,
+    ease: "easeOut",
+  }}
+>
+  Understand Your Business.
+  <br />
+  <span className="approach-title-gradient">
+    Build What Matters.
+  </span>
+</motion.h2>
 
           <p className="approach-intro">
             We start with your challenges and create practical AI and
