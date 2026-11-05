@@ -66,7 +66,7 @@ export default function Footer() {
           >
             <a href="#home" className="brand footer-logo">
               <img
-                src="/images/logo.gif"
+                src="/images/logo.png"
                 alt="Intevoris AI Solutions"
                 className="footer-brand-logo"
               />

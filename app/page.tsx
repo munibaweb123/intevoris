@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import Approach from "@/components/Approach";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Services from "@/components/Services";
@@ -13,13 +14,13 @@ export default function Home() {
       <Navbar />
 
       <main>
-        <Hero />
-        <About />
-        <Services />
-        <Solutions />
-        <Process />
-        <Contact />
-      </main>
+  <Hero />
+  <About />
+  <Services />
+  <Solutions />
+  <Approach />
+  <Contact />
+</main>
 
       <Footer />
     </>

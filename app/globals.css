@@ -508,3 +508,210 @@ button, a { -webkit-tap-highlight-color: transparent; }
     line-height: 1.2;
   }
 }
+
+/* ==============================
+   OUR APPROACH SECTION
+================================ */
+
+.approach-section {
+  position: relative;
+  padding: 110px 6%;
+  background: #071a35;
+  color: #ffffff;
+  overflow: hidden;
+}
+
+.approach-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.approach-heading {
+  max-width: 850px;
+  margin: 0 auto 60px;
+  text-align: center;
+}
+
+.approach-eyebrow {
+  display: inline-block;
+  color: #05c8d7;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  margin-bottom: 20px;
+}
+
+.approach-title {
+  font-size: clamp(2.3rem, 5vw, 4rem);
+  line-height: 1.15;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  margin-bottom: 24px;
+}
+
+.approach-title span {
+  display: block;
+  color: #05c8d7;
+}
+
+.approach-intro {
+  max-width: 700px;
+  margin: 0 auto;
+  color: #c5d5e5;
+  font-size: 1.08rem;
+  line-height: 1.8;
+}
+
+/* Four cards in one desktop row */
+
+.approach-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.approach-card {
+  padding: 30px 24px;
+  min-height: 320px;
+  background: #102b4b;
+  border: 1px solid rgba(5, 200, 215, 0.2);
+  border-radius: 18px;
+  transition:
+    border-color 0.3s ease,
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.approach-card:hover {
+  border-color: #05c8d7;
+  background: #143557;
+  box-shadow: 0 15px 40px rgba(5, 200, 215, 0.1);
+}
+
+.approach-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 35px;
+}
+
+.approach-number {
+  color: #05c8d7;
+  font-size: 1.4rem;
+  font-weight: 800;
+}
+
+.approach-icon {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #05c8d7;
+  background: rgba(5, 200, 215, 0.1);
+  border-radius: 14px;
+}
+
+.approach-card h3 {
+  color: #ffffff;
+  font-size: 1.2rem;
+  line-height: 1.4;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.approach-card p {
+  color: #c5d5e5;
+  font-size: 0.94rem;
+  line-height: 1.75;
+}
+
+/* Bottom call to action */
+
+.approach-cta {
+  margin-top: 65px;
+  padding: 45px 25px;
+  text-align: center;
+  background: linear-gradient(
+    135deg,
+    #102b4b,
+    #12365b
+  );
+  border: 1px solid rgba(5, 200, 215, 0.25);
+  border-radius: 20px;
+}
+
+.approach-cta h3 {
+  color: #ffffff;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.approach-cta p {
+  color: #c5d5e5;
+  margin-bottom: 25px;
+  line-height: 1.7;
+}
+
+.approach-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 25px;
+  color: #071a35;
+  background: #05c8d7;
+  border-radius: 8px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.approach-button:hover {
+  background: #7deaf0;
+  transform: translateY(-3px);
+}
+
+/* Tablet */
+
+@media (max-width: 1050px) {
+  .approach-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Mobile: stack cards vertically */
+
+@media (max-width: 640px) {
+  .approach-section {
+    padding: 75px 5%;
+  }
+
+  .approach-heading {
+    margin-bottom: 40px;
+  }
+
+  .approach-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .approach-card {
+    min-height: auto;
+    padding: 25px;
+  }
+
+  .approach-card-top {
+    margin-bottom: 25px;
+  }
+
+  .approach-cta {
+    margin-top: 40px;
+    padding: 35px 20px;
+  }
+
+  .approach-button {
+    width: 100%;
+  }
+}

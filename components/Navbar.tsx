@@ -8,18 +8,25 @@ const navLinks = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
   { label: "Services", href: "#services" },
-  { label: "Our Process", href: "#process" },
+  { label: "Our Approach", href: "#approach" },
 ];
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const closeMenu = () => setMenuOpen(false);
 
   return (
     <header className="navbar">
       <div className="container nav-container">
 
         {/* Company Logo */}
-        <a href="#home" className="brand">
+        <a
+          href="#home"
+          className="brand"
+          onClick={closeMenu}
+          aria-label="Intevoris AI Solutions - Home"
+        >
           <img
             src="/images/logo.png"
             alt="Intevoris AI Solutions"
@@ -27,13 +34,17 @@ export default function Navbar() {
           />
         </a>
 
-        {/* Navigation Links */}
-        <nav className={`nav-links ${menuOpen ? "active" : ""}`}>
+        {/* Desktop and Mobile Navigation */}
+        <nav
+          id="primary-navigation"
+          className={`nav-links ${menuOpen ? "active" : ""}`}
+          aria-label="Main navigation"
+        >
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              onClick={() => setMenuOpen(false)}
+              onClick={closeMenu}
             >
               {link.label}
             </a>
@@ -42,20 +53,23 @@ export default function Navbar() {
           <a
             href="#contact"
             className="nav-cta"
-            onClick={() => setMenuOpen(false)}
+            onClick={closeMenu}
           >
-            Let's Talk <ArrowUpRight size={16} />
+            Let's Talk
+            <ArrowUpRight size={17} />
           </a>
         </nav>
 
-        {/* Mobile Menu */}
+        {/* Mobile Menu Button */}
         <button
+          type="button"
           className="mobile-menu"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle navigation"
+          onClick={() => setMenuOpen((previous) => !previous)}
+          aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
           aria-expanded={menuOpen}
+          aria-controls="primary-navigation"
         >
-          {menuOpen ? <X /> : <Menu />}
+          {menuOpen ? <X size={25} /> : <Menu size={25} />}
         </button>
 
       </div>
