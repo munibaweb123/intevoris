@@ -143,11 +143,11 @@ export default function Hero() {
       <FloatingWavesBackground/>
 
       {/* Added relative and z-10 to ensure content stays above the background */}
-      <div className="container hero-container relative z-10 flex flex-wrap items-center">
+      <div className="container hero-container relative z-10">
         
         {/* LEFT SIDE */}
         <motion.div
-          className="hero-content w-full lg:w-1/2"
+          className="hero-content"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
@@ -201,7 +201,7 @@ export default function Hero() {
 
         {/* RIGHT SIDE: TECHNOLOGY VISUAL */}
         <motion.div
-          className="hero-visual w-full lg:w-1/2 relative mt-12 lg:mt-0"
+          className="hero-visual relative"
           initial={{ opacity: 0, scale: 0.85, x: 40 }}
           animate={{ opacity: 1, scale: 1, x: 0 }}
           transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
